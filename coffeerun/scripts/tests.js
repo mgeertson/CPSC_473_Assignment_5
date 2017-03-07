@@ -1,8 +1,5 @@
 /* global QUnit: false, App: false, myTruck: true */
 
-//For first part Figure 8.10
-//getAll() requires deepEqual versus equal due to Object
-
 QUnit.test('DataStore', function(assert) {
     var ds = new App.DataStore();
 
@@ -14,27 +11,19 @@ QUnit.test('DataStore', function(assert) {
         'james@bond.com': 'eshpressho',
         'm@bond.com': 'tea'
     });
-    //assert.equal(ds.get('m@bond.com'), 'tea');
-    //assert.equal(ds.get('james@bond.com'), 'eshpressho');
-
 
     ds.remove('james@bond.com');
-
     assert.deepEqual(ds.getAll(), {
         'm@bond.com': 'tea'
     });
-
-    //get m@bond.com
     assert.equal(ds.get('m@bond.com'), 'tea');
-    //get james@bond.com
     assert.equal(ds.get('james@bond.com'), undefined);
 
 });
 
 
-
-//Problem with 8.32 conversion is that Truck did not have any method that returned values that could be compared.
-//In order to fix this problem I created a new function called getAllTruck that will return all objects.
+//Truck tests failed because it could not access the values of truck (no returned values -- undefined).  New truck function "getAllTruck"
+//created.
 
 QUnit.test('truck', function(assert) {
 
